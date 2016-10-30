@@ -1,19 +1,24 @@
 package com.dimasco.dynamodb.manager;
 
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 
 public class DynamoDBManager {
     private static volatile DynamoDBManager instance;
 
     private static DynamoDBMapper mapper;
+    private static AmazonDynamoDBClient client;
 
     private DynamoDBManager() {
-
-        AmazonDynamoDBClient client = new AmazonDynamoDBClient();
-        client.setRegion(Region.getRegion(Regions.US_EAST_1));
+        AWSCredentials credentials = new BasicAWSCredentials("test", "test");
+        client = new AmazonDynamoDBClient(credentials);
+        //client.setRegion(Region.getRegion(Regions.US_EAST_1));
+        client.setEndpoint("http://localhost:8000");
+        client.setSignerRegionOverride("local");
         mapper = new DynamoDBMapper(client);
     }
 
@@ -33,5 +38,11 @@ public class DynamoDBManager {
 
         DynamoDBManager manager = instance();
         return manager.mapper;
+    }
+
+    public static AmazonDynamoDB amazonDynamoDB() {
+
+        DynamoDBManager manager = instance();
+        return manager.client;
     }
 }
