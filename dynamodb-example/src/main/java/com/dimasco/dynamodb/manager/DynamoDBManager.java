@@ -5,9 +5,6 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 
-/**
- * Created by dimas on 10/25/16.
- */
 public class DynamoDBManager {
     private static volatile DynamoDBManager instance;
 

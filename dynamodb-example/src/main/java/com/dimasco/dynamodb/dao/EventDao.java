@@ -5,9 +5,6 @@ import com.dimasco.dynamodb.domain.Event;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by dimas on 10/29/16.
- */
 public interface EventDao {
     List<Event> findAllEvents();
 

@@ -3,18 +3,16 @@ package com.dimasco.dynamodb.domain;
 import com.amazonaws.services.dynamodbv2.datamodeling.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 
-/**
- * Created by dimas on 10/29/16.
- */
 @Getter
-@Builder
+@Setter
 @DynamoDBTable(tableName = "EVENT")
 public class Event implements Serializable {
-    private static final String CITY_INDEX = "City-Index";
-    private static final String AWAY_TEAM_INDEX = "AwayTeam-Index";
+    public static final String CITY_INDEX = "City-Index";
+    public static final String AWAY_TEAM_INDEX = "AwayTeam-Index";
 
     @DynamoDBAttribute
     private Long eventId;
